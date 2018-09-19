@@ -1,0 +1,27 @@
+﻿<Window x:Class="MyAwesomeDiary.ReadingDiaryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyAwesomeDiary"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ReadingDiaryView" Height="350" Width="560">
+    <Canvas>
+        <RichTextBox Name="txtReading"
+                     Width="522" Height="235"
+                     AcceptsReturn="True" 
+                     Margin="10"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top">
+            <FlowDocument>
+                <Paragraph Margin="0"></Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="btnClose"
+                Content="Close"
+                Width="100" Height="30"
+                Margin="220,260,220,30" 
+                Click="btnClose_Click"/>
+    </Canvas>
+</Window>

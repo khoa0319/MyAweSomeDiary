@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="MyAwesomeDiary.CalendarMonthView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyAwesomeDiary"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             mc:Ignorable="d"
+             Name="ucMonth"
+             d:DesignHeight="600" d:DesignWidth="700">
+    <StackPanel Margin="0, 50, 0, 0">
+        <StackPanel Orientation="Horizontal">
+            <Button Width="100" FontSize="15" Content="Lịch năm"
+                    Command="{Binding OpenYearViewCommand}"
+                    CommandParameter="{Binding ElementName=ucMonth}">
+
+            </Button>
+            <ComboBox x:Name="cbMonth" Width="150" Height="40" 
+                  HorizontalAlignment="Left" FontSize="21" 
+                  FontWeight="DemiBold"
+                  HorizontalContentAlignment="Center"
+                  DisplayMemberPath="Value"
+                  SelectedIndex="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction
+                        Command="{Binding ChangeMonthCommand}"
+                        CommandParameter="{Binding ElementName=ucMonth}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <Button x:Name="btnDecrease"
+                    Content="&lt;" FontSize="20" Margin="300, 0, 0, 0"
+                    FontWeight="Bold"
+                    Command="{Binding DecreaseYearCommand}"
+                    CommandParameter="{Binding ElementName=ucMonth}"></Button>
+            <Label  x:Name="lbYear"
+                    Content="{Binding Year, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
+                    FontWeight="Bold" FontSize="20"></Label>
+            <Button x:Name="btnIncrease"
+                    Content="&gt;" FontSize="20" FontWeight="Bold"
+                    Command="{Binding IncreaseYearCommand}"
+                    CommandParameter="{Binding ElementName=ucMonth}"></Button>
+        </StackPanel>
+        <!-- -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"                   
+                    Height="50" Background="SkyBlue">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Width" Value="100"></Setter>
+                    <Setter Property="FontSize" Value="30"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="TextAlignment" Value="Center"></Setter>
+                    <!--<Setter Property="Background" Value="SkyBlue"></Setter>-->
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock>Sun</TextBlock>
+            <TextBlock>Mon</TextBlock>
+            <TextBlock>Tue</TextBlock>
+            <TextBlock>Wed</TextBlock>
+            <TextBlock>Thu</TextBlock>
+            <TextBlock>Fri</TextBlock>
+            <TextBlock>Sat</TextBlock>
+            
+        </StackPanel>
+        
+        <Canvas x:Name="spMonth" Height="500"
+                Background="LightSkyBlue">
+            
+        </Canvas>
+    </StackPanel>
+</UserControl>

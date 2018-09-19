@@ -1,0 +1,154 @@
+﻿<Window x:Class="MyAwesomeDiary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyAwesomeDiary"
+        mc:Ignorable="d"
+        Name="MainWD"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="800" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="DiaryMainWindow" Grid.Column="0">
+
+            <Border Background="GhostWhite"
+                    BorderBrush="Silver" 
+                    BorderThickness="1" 
+                    CornerRadius="8,8,3,3"
+                    Margin="5,2,0,5">
+                <StackPanel Grid.Column="0">
+                    <!--Hình đại diện người dùng-->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Image Name="imgAvatarUser"
+                           Source="Resources/Image/ImageHere.jpg"
+                           Width="80" Height="80"
+                           Margin="30,20,30,10"/>
+                    </StackPanel>
+                    <!--Tên người dùng-->
+                    <Label Name="lbUserName"
+                           Content="{Binding FirstName}"
+                           FontSize="22"  
+                           HorizontalAlignment="Center"/>
+                    <!--Nút cập nhật thông tin-->
+                    <Button Name="btnUpdateInfo"
+                            Content="Thông tin người dùng"
+                            Height="25"
+                            Margin="10,0,10,0"
+                            Command="{Binding OpenInformationCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                    <!--Nút nhật kí-->
+                    <Button Name="btnDiary" 
+                            Content="Diary"
+                            Height="50" 
+                            Margin="10,30,10,10"
+                            Command="{Binding OpenDiaryCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                    <!--Nút lịch và sự kiện-->
+                    <Button Name="btnCalendarEvent" 
+                            Content="Lịch và Sự kiện"
+                            Height="50" 
+                            Margin="10"
+                            Command="{Binding OpenCalendarEventCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                    <!--Nút To do list-->
+                    <Button Name="btnToDoList" 
+                            Content="To do list"
+                            Height="50" 
+                            Margin="10"
+                            Command="{Binding OpenTodolistCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                    <!--Nút sự kiện-->
+                    <Button Name="btnEvent" Content="Thông Báo"
+                            Command="{Binding OpenComingEventCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"
+                            Height="50" 
+                            Margin="10"/>
+                    <!-- Tâm trạng-->
+                    <GroupBox Header="Tâm trạng của bạn"
+                              BorderThickness="2"
+                              Margin="5">
+                        <StackPanel Margin="3">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <Button Name="btnLeft"
+                                        Background="Transparent"
+                                        Width="40" Height="70"
+                                        BorderBrush="Transparent"
+                                        Command="{Binding LeftCommand}"
+                                        CommandParameter="{Binding ElementName=MainWD}">
+                                    <Image Source="Resources/Image/ALeft.png"/>
+                                </Button>
+                                <Image Name="imgEmotionIcon"
+                                       Source="Resources/Image/1.png"
+                                       Width="70" Height="70"
+                                       Margin="5"/>
+                                <Button Name="btnRight"
+                                        Background="Transparent"
+                                        Width="40" Height="70"
+                                        BorderBrush="Transparent"
+                                        Command="{Binding RightCommand}"
+                                        CommandParameter="{Binding ElementName=MainWD}">
+                                    <Image Source="Resources/Image/ARight.png"/>
+                                </Button>
+
+                            </StackPanel>
+                            <Label Name="lbEmotion" Content="Emotion"
+                                   FontSize="15" Margin="3"
+                                   HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <Button Name="btnEmotionShow"
+                                        Content="Xem tâm trạng"
+                                        Height="30" Width="100"
+                                        Margin="3"
+                                        Command="{Binding ShowEmotionCommand}"
+                                        CommandParameter="{Binding ElementName=MainWD}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!--Nút tùy chỉnh-->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,10,0,0">
+                        <!--Nút đăng xuất-->
+                        <Button Name="btnSignOut"
+                            Content="Đăng xuất"
+                            Height="30" Width="100"
+                            Margin="3"
+                            Command="{Binding SignOutCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                        <!--Nút thoát-->
+                        <Button Name="btnEXit"
+                            Content="Thoát "
+                            Height="30" Width="100"
+                            Margin="3"
+                            Command="{Binding ExitCommand}"
+                            CommandParameter="{Binding ElementName=MainWD}"/>
+                        <Button Name="btnSetting"
+                                Width="30" Height="30"
+                                Margin="3">
+                            <!--<Image Source="Resources/Image/Gear.png"
+                                   Margin="3"/>-->
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <local:CalendarMonthView x:Name="ucCalendar"
+                                 Grid.Column="1" Width="700"
+                                 Visibility="Hidden" Margin="10,0,0,10"/>
+        <local:DiaryReadView x:Name="ucDiary"
+                             Visibility="Hidden"/>
+        <local:TodoListView x:Name="ucTodolist"
+                            Visibility="Hidden"/>
+        <local:UserInforView x:Name="ucUserInfor"
+                             Visibility="Hidden"/>
+    </Grid>
+</Window>

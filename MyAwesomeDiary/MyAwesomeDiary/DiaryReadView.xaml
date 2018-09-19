@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MyAwesomeDiary.DiaryReadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyAwesomeDiary"
+             mc:Ignorable="d" 
+             Name="DiaryReadWD"
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <Canvas>
+        <Button x:Name="btnAddDiary"
+                Content="Add diary"
+                Width="100" Height="30"
+                Canvas.Left="1000" Canvas.Top="50"
+                Command="{Binding OpenDiaryWriteCommand}"
+                CommandParameter="{Binding ElementName=DiaryReadWD}"/>
+        <Button x:Name="btnReadDiary"
+                Content="Read diary"
+                Width="100" Height="30"
+                Canvas.Left="1000" Canvas.Top="90"
+                Command="{Binding OpenReadingDiaryCommand}"
+                CommandParameter="{Binding ElementName=DiaryReadWD}"/>
+        <Button x:Name="btnUpdateDiary"
+                Content="Update diary"
+                Width="100" Height="30"
+                Canvas.Left="1000" Canvas.Top="130"
+                Command="{Binding UpdateDiaryCommand}"
+                 CommandParameter="{Binding ElementName=DiaryReadWD}"/>
+        <Button x:Name="btnDeleteDiary"
+                Content="Delete diary"
+                Width="100" Height="30"
+                Canvas.Left="1000" Canvas.Top="170"
+                Command="{Binding DeleteDiaryCommand}"
+                CommandParameter="{Binding ElementName=DiaryReadWD}"/>
+        <ListView x:Name="lwListDiary"
+                  Width="680" Height="670" 
+                  Canvas.Left="290" Canvas.Top="45"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding listOfDiaries}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Date time" 
+                                    Width="680"
+                                    DisplayMemberBinding="{Binding WritingDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Canvas>
+</UserControl>

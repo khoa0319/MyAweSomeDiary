@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="MyAwesomeDiary.SignUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyAwesomeDiary"
+             mc:Ignorable="d"
+             Name="uCSignUp"
+             d:DesignHeight="400" d:DesignWidth="450">
+    <StackPanel Height="600" Width="450" HorizontalAlignment="Center">
+        <StackPanel.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="18"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="15"></Setter>
+            </Style>
+        </StackPanel.Resources>
+        <Border BorderThickness="2" BorderBrush="Azure" CornerRadius="10">
+            <TextBlock FontSize="25" TextAlignment="Center" Text="Đăng Ký"
+                       FontWeight="Bold" Foreground="LightGray"></TextBlock>
+        </Border>
+        <Label Content="Tài khoản"></Label>
+        <TextBox x:Name="txtUserName"></TextBox>
+        <Label Content="Mật khẩu"></Label>
+        <PasswordBox x:Name="pwSignUp"></PasswordBox>
+        <DatePicker x:Name="dpSignUp" Height="30" FontSize="18"></DatePicker>
+        <Label>Quốc tịch</Label>
+        <ComboBox x:Name="cbNation"
+                  SelectedIndex="0"
+                  DisplayMemberPath="Name"
+                  Height="30" FontSize="15"></ComboBox>
+        <Label Content="Câu hỏi bảo mật"></Label>
+        <ComboBox FontSize="15">
+            <ComboBoxItem>Thú nuôi đầu tiên của bạn tên gì</ComboBoxItem>
+            <ComboBoxItem>Nơi bạn có nụ hôn đầu tiên</ComboBoxItem>
+            <ComboBoxItem>Tên của người yêu đầu tiên</ComboBoxItem>
+            <ComboBoxItem>Món ăn ưa thích của bạn</ComboBoxItem>
+            <ComboBoxItem>Người bạn ghét nhất là ai</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="txtAns"></TextBox>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Height" Value="30"></Setter>
+                    <Setter Property="Width" Value="100"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="btnSignUp" Content="Đăng ký"
+                    Command="{Binding SignUpCommand}"
+                    CommandParameter="{Binding ElementName=uCSignUp}">
+            </Button>
+            <Button x:Name="btnSignIn" Content="Đăng Nhập"
+                    Command="{Binding ToSignInViewCommand}"
+                    CommandParameter="{Binding ElementName=uCSignUp}">
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
